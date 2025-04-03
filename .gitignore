@@ -1,0 +1,101 @@
+# ========================
+# Eclipse Workspace
+# ========================
+.metadata/
+*.tmp
+*.bak
+*.swp
+*.orig
+
+# ========================
+# Maven & Spring Boot
+# ========================
+
+# Cartelle di output di Maven
+/target/
+*/target/
+
+# File di log
+*.log
+
+# File temporanei di compilazione
+*.class
+*.jar
+*.war
+*.ear
+
+# Eclipse project files
+.classpath
+.project
+.settings/
+*/.classpath
+*/.project
+*/.settings/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+*/.idea/
+*/*.iml
+*/out/
+
+# VS Code
+.vscode/
+*/.vscode/
+
+# Backup temporanei
+*~
+*.bak
+*.swp
+*.tmp
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Test output
+/test-output/
+
+# File generati da strumenti
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+
+# Spring Boot specific
+spring.log
+
+# Cartelle target all'interno dei progetti figli
+**/target/
+
+# Altri file comuni da ignorare
+log/
+logs/
+*.env
+.env*
+
+# Node (nel caso alcuni progetti abbiano UI frontend)
+node_modules/
+npm-debug.log
+
+# Build tools
+.gradle/
+build/
+
+# Coverage reports
+jacoco.exec
+coverage/
+*.ec
+
+# Backup IntelliJ
+.idea_modules/
+
+# Altri workspace temporanei
+tmp/
+temp/
+
+# Docker
+*.pid
+docker-compose.override.yml
