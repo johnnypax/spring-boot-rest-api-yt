@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.sql.DataSource;
+
 import org.springframework.stereotype.Repository;
 
 import com.mysql.cj.jdbc.MysqlDataSource;
@@ -15,14 +17,20 @@ import dev.archety.shool.models.Student;
 @Repository
 public class StudentRepository implements IRepositoryRead<Student>, IRepositoryWrite<Student>{
 
+	private final DataSource ds;
+	
+	public StudentRepository(DataSource dataSource) {
+		this.ds = dataSource;
+	}
+	
 	@Override
 	public List<Student> getAll() {
 		
 		List<Student> list = new ArrayList<Student>();
 		
 		try {
-			Connection conn = ConnectionSingleton.getInstance().getConnection();
-			
+			Connection conn = ds.getConnection();
+	
 			String query = "SELECT studentID, firstName, lastName, studentNumber, dateOfBirth FROM Student";
 			PreparedStatement ps = conn.prepareStatement(query);
 			
@@ -53,7 +61,7 @@ public class StudentRepository implements IRepositoryRead<Student>, IRepositoryW
 		Student stu = null;
 		
 		try {
-			Connection conn = ConnectionSingleton.getInstance().getConnection();
+			Connection conn = ds.getConnection();
 			
 			String query = "SELECT studentID, firstName, lastName, studentNumber, dateOfBirth "
 					+ "FROM Student WHERE studentID = ?";
@@ -85,7 +93,7 @@ public class StudentRepository implements IRepositoryRead<Student>, IRepositoryW
 		boolean result = false;
 		
 		try {
-			Connection conn = ConnectionSingleton.getInstance().getConnection();
+			Connection conn = ds.getConnection();
 			
 			String query = "INSERT INTO Student (firstName, lastName, studentNumber, dateOfBirth) VALUES"
 					+ "(?, ?, ?, ?)";
@@ -114,7 +122,7 @@ public class StudentRepository implements IRepositoryRead<Student>, IRepositoryW
 		boolean result = false;
 		
 		try {
-			Connection conn = ConnectionSingleton.getInstance().getConnection();
+			Connection conn = ds.getConnection();
 			
 			int id = obj.getId();
 			Student stu = this.getById(id);
@@ -158,7 +166,7 @@ public class StudentRepository implements IRepositoryRead<Student>, IRepositoryW
 		boolean result = false;
 		
 		try {
-			Connection conn = ConnectionSingleton.getInstance().getConnection();
+			Connection conn = ds.getConnection();
 			
 			String query = "DELETE FROM Student WHERE studentID = ?";
 			PreparedStatement ps = conn.prepareStatement(query);
